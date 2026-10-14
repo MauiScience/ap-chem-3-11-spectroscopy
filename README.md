@@ -5,8 +5,7 @@ Students relate each region of the electromagnetic spectrum to the molecular or
 electronic transition it causes: microwave to rotation, infrared to vibration,
 ultraviolet/visible to electronic transitions.
 
-**Live:** https://mauiscience.github.io/lava-lab-science/3-11-spectroscopy/
-
+**Live:** [https://mauiscience.github.io/lava-lab-science/3-11-spectroscopy/]
 ## What's inside
 - **Explore**
   - Spectrum and molecular motion: drag a wavelength marker and watch H2O, CO2,
