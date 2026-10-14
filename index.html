@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.11 Spectroscopy and the Electromagnetic Spectrum | Lava Lab Science</title>
+<style>
+:root{--bg:#0a0f1a;--pan:#111a2b;--pan2:#0d1524;--line:#22304a;--txt:#e6edf7;--mut:#8ea0bd;--teal:#2dd4bf;--violet:#a78bfa;--amber:#fbbf24;--rose:#fb7185}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;
+ background-image:linear-gradient(rgba(45,212,191,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(45,212,191,.045) 1px,transparent 1px);background-size:32px 32px}
+.wrap{max-width:1120px;margin:0 auto;padding:14px 14px 40px}
+.brand{font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;display:inline-block;margin:2px 2px 8px;
+ background:linear-gradient(90deg,var(--teal),var(--violet),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.panel{background:var(--pan);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;min-width:0}
+.hdr{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-top:2px solid var(--teal)}
+h1{font-size:21px;line-height:1.25;margin:0;font-weight:700;letter-spacing:-.01em}
+h2{font-size:16px;margin:0 0 8px;font-weight:650;color:var(--txt)}
+.sub{margin:3px 0 0;color:var(--mut);font-size:13px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab,.chip,.btn{font:inherit;font-size:13.5px;color:var(--txt);background:var(--pan2);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;min-height:36px}
+.tab:hover,.chip:hover,.btn:hover{border-color:var(--teal)}
+.tab.on{background:rgba(45,212,191,.14);border-color:var(--teal);color:var(--teal)}
+.modes .tab.on{background:rgba(167,139,250,.16);border-color:var(--violet);color:var(--violet)}
+.chip.on{background:rgba(251,191,36,.13);border-color:var(--amber);color:var(--amber)}
+.btn.pri{background:var(--teal);color:#04201c;border-color:var(--teal);font-weight:650}
+.btn:disabled{opacity:.4;cursor:default}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0}
+.row>label{color:var(--mut);font-size:13px;min-width:74px}
+.cw{width:100%;min-width:0}
+canvas{display:block;width:100%;border-radius:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:12px}
+.grid2>.panel{margin-bottom:0}
+.note{color:var(--mut);font-size:13.5px;margin:8px 0 0}
+.note b,.note strong{color:var(--txt)}
+.ext{color:var(--amber)}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:8px;margin-top:10px}
+.rb{background:var(--pan2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+.rb span{display:block;color:var(--mut);font-size:11.5px}
+.rb b{font-size:14.5px;font-weight:650;overflow-wrap:anywhere}
+input[type=range]{width:100%;accent-color:var(--teal);min-height:28px}
+.sl{display:grid;grid-template-columns:96px 1fr 92px;gap:8px;align-items:center;margin:6px 0}
+.sl label{color:var(--mut);font-size:13px}
+.sl output{font-size:13px;text-align:right}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th,table.t td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}
+table.t th{color:var(--mut);font-weight:600}
+table.t tr.on td{background:rgba(251,191,36,.16);color:var(--amber)}
+.tw{overflow-x:auto}
+.task{border-top:2px solid var(--violet)}
+.q{margin-top:10px}
+.q .qt{font-weight:600;margin-bottom:8px}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;white-space:normal}
+.opt.right{border-color:var(--teal);background:rgba(45,212,191,.16)}
+.opt.wrong{border-color:var(--rose);background:rgba(251,113,133,.13)}
+.fb{margin-top:8px;padding:9px 11px;border-left:3px solid var(--teal);background:var(--pan2);border-radius:6px;font-size:14px}
+.fb.bad{border-left-color:var(--rose)}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.pill{color:var(--mut);font-size:12.5px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;margin-top:10px}
+.tier{background:var(--pan2);border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;text-align:left;font:inherit;color:var(--txt)}
+.tier:hover{border-color:var(--violet)}
+.tier b{display:block;margin-bottom:3px}
+.tier span{color:var(--mut);font-size:13px}
+.band{font-size:22px;font-weight:750;margin:6px 0}
+.mastery{color:var(--teal)}.proficient{color:var(--amber)}.review{color:var(--rose)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--mut);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.foot{color:var(--mut);font-size:12px;margin-top:6px}
+[hidden]{display:none!important}
+@media (max-width:520px){h1{font-size:18px}.sl{grid-template-columns:78px 1fr 74px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="brand">Lava Lab Science</div>
+
+<header class="panel hdr">
+  <div>
+    <h1>Spectroscopy and the Electromagnetic Spectrum</h1>
+    <p class="sub">AP Chemistry Topic 3.11, Learning Objective 3.11.A: relate a region of the spectrum to the molecular or electronic transitions it causes.</p>
+  </div>
+  <nav class="tabs modes" id="modeTabs" aria-label="Mode">
+    <button class="tab on" data-mode="explore">Explore</button>
+    <button class="tab" data-mode="guided">Guided Lab</button>
+    <button class="tab" data-mode="quiz">Quiz</button>
+  </nav>
+</header>
+
+<section class="panel task" id="task" hidden>
+  <div class="chips" id="invTabs"></div>
+  <div id="taskBody"></div>
+</section>
+
+<nav class="tabs" id="toolTabs" aria-label="Tool" style="margin-bottom:12px">
+  <button class="tab on" data-view="em">Spectrum and molecular motion</button>
+  <button class="tab" data-view="ir">Infrared</button>
+  <button class="tab" data-view="uv">UV-Vis</button>
+</nav>
+
+<!-- ============ EM VIEW ============ -->
+<section id="v-em">
+  <div class="panel">
+    <h2>The electromagnetic spectrum</h2>
+    <p class="note" style="margin:0 0 6px">Drag the marker (or use the arrow keys) to choose a wavelength. The scale is logarithmic: each tick is a factor of 1000.</p>
+    <div class="cw"><canvas id="emBar" tabindex="0" role="slider" aria-label="Wavelength" style="touch-action:none;cursor:ew-resize"></canvas></div>
+    <div class="legend"><span><i style="background:#2dd4bf"></i>R: typical rotational gaps</span><span><i style="background:#fb7185"></i>V: typical vibrational gaps</span><span><i style="background:#a78bfa"></i>E: typical electronic gaps</span></div>
+    <div class="cw" style="margin-top:8px"><canvas id="visBar"></canvas></div>
+    <div class="chips" id="jump" style="margin-top:10px"></div>
+    <div class="read" id="emRead"></div>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h2>What the radiation does to a molecule</h2>
+      <div class="row"><label>Molecule</label><div class="chips" id="molChips"></div></div>
+      <div class="row" id="modeRow"><label>IR motion</label><div class="chips" id="modeChips"></div></div>
+      <div class="cw"><canvas id="molCv"></canvas></div>
+      <p class="note" id="molNote"></p>
+    </div>
+    <div class="panel">
+      <h2>Energy levels</h2>
+      <div class="cw"><canvas id="lvlCv"></canvas></div>
+      <p class="note" id="lvlNote"></p>
+    </div>
+  </div>
+  <p class="foot">The wave is not drawn to scale. A real molecule absorbs only photons whose energy matches the gap between two of its levels; the region tells you which kind of gap that is.</p>
+</section>
+
+<!-- ============ IR VIEW ============ -->
+<section id="v-ir" hidden>
+  <div class="panel">
+    <h2>Infrared spectra</h2>
+    <div class="row"><label>Sample</label><div class="chips" id="irChips"></div></div>
+    <div class="row"><label>Options</label><div class="chips"><button class="chip on" id="irLab">Label the bands</button></div></div>
+    <div class="cw"><canvas id="irCv" style="touch-action:none;cursor:crosshair"></canvas></div>
+    <p class="note mono" id="irRead">Move over the spectrum to read a wavenumber.</p>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h2>Which bond absorbs where?</h2>
+      <div class="tw"><table class="t" id="irTab"></table></div>
+      <p class="note">Rows light up for the wavenumber under your cursor.</p>
+    </div>
+    <div class="panel">
+      <h2>Why the positions differ</h2>
+      <div class="cw"><canvas id="bondCv"></canvas></div>
+      <p class="note">Each bond is slowed down by a factor of about 10<sup>12</sup> so you can see it. Lighter atoms and stronger (multiple) bonds vibrate faster, so they absorb at higher wavenumber.</p>
+    </div>
+  </div>
+  <p class="foot">Band positions follow typical correlation ranges; peak shapes are simplified and the real spectra have more small bands.</p>
+</section>
+
+<!-- ============ UV VIEW ============ -->
+<section id="v-uv" hidden>
+  <div class="panel">
+    <h2>UV-Vis spectrophotometer</h2>
+    <div class="row"><label>Substance</label><div class="chips" id="uvChips"></div></div>
+    <div class="sl"><label for="lamR">Wavelength</label><input type="range" id="lamR" min="200" max="800" step="1"><output id="lamO" class="mono"></output></div>
+    <div class="row"><button class="btn" id="goMax">Go to peak absorbance</button><span class="pill" id="uvColorTxt"></span></div>
+    <div class="cw"><canvas id="beamCv"></canvas></div>
+    <div class="sl"><label for="c1R" id="c1L">Sample 1</label><input type="range" id="c1R" min="0" max="1000" step="1"><output id="c1O" class="mono"></output></div>
+    <div class="sl"><label for="c2R">Sample 2</label><input type="range" id="c2R" min="0" max="1000" step="1"><output id="c2O" class="mono"></output></div>
+    <div class="read" id="uvRead"></div>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h2>Absorbance spectrum</h2>
+      <div class="cw"><canvas id="uvCv" style="touch-action:none;cursor:ew-resize"></canvas></div>
+      <p class="note">Drag along the plot to move the wavelength. Teal is Sample 1, amber is Sample 2.</p>
+    </div>
+    <div class="panel">
+      <h2>Absorbance and concentration</h2>
+      <div class="cw"><canvas id="beerCv"></canvas></div>
+      <p class="note" id="uvNote"></p>
+    </div>
+  </div>
+  <p class="foot">Spectra are illustrative: peak positions and heights are simplified from typical values for a 1.00 cm cell. The quantitative relationship is developed in Topic 3.13 (Beer-Lambert law).</p>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="v-quiz" hidden>
+  <div class="panel" id="quizBox"></div>
+</section>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s);};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+var H=6.626e-34,C=3.00e8,EV=1.602e-19;
+var COL={teal:'#2dd4bf',violet:'#a78bfa',amber:'#fbbf24',rose:'#fb7185',txt:'#e6edf7',mut:'#8ea0bd',line:'#22304a',pan:'#111a2b',pan2:'#0d1524'};
+
+/* ---------- utilities ---------- */
+function fit(cv,h){
+  var par=cv.parentElement;var w=Math.max(160,Math.floor((par&&par.clientWidth)||320));
+  var d=Math.min(window.devicePixelRatio||1,2);
+  if(cv.width!==Math.round(w*d)||cv.height!==Math.round(h*d)){cv.width=Math.round(w*d);cv.height=Math.round(h*d);}
+  cv.style.height=h+'px';
+  var x=cv.getContext('2d');x.setTransform(d,0,0,d,0,0);
+  return {x:x,w:w,h:h};
+}
+function wl2rgb(w){
+  var r=0,g=0,b=0;
+  if(w>=380&&w<440){r=(440-w)/60;b=1;}
+  else if(w>=440&&w<490){g=(w-440)/50;b=1;}
+  else if(w>=490&&w<510){g=1;b=(510-w)/20;}
+  else if(w>=510&&w<580){r=(w-510)/70;g=1;}
+  else if(w>=580&&w<645){r=1;g=(645-w)/65;}
+  else if(w>=645&&w<=780){r=1;}
+  var f=1;if(w<420)f=.3+.7*(w-380)/40;else if(w>700)f=.3+.7*(780-w)/80;
+  if(w<380||w>780)f=0;
+  return [r,g,b].map(function(v){return Math.round(255*Math.pow(v*f,.8));});
+}
+function wl2css(w,a){var c=wl2rgb(w);return 'rgba('+c[0]+','+c[1]+','+c[2]+','+(a==null?1:a)+')';}
+function sup(n){return '<sup>'+(n<0?'\u2212'+(-n):n)+'</sup>';}
+function sci(v,d){d=d||3;if(!isFinite(v)||v===0)return '0';var e=Math.floor(Math.log10(v));var m=v/Math.pow(10,e);var s=m.toFixed(d-1);if(parseFloat(s)>=10){m/=10;e++;s=m.toFixed(d-1);}return s+'\u00d710'+sup(e);}
+function fmtLam(m){
+  if(m<1e-9)return (m*1e12).toPrecision(3)+' pm';
+  if(m<1e-6)return (m*1e9).toPrecision(3)+' nm';
+  if(m<1e-3)return (m*1e6).toPrecision(3)+' \u00b5m';
+  if(m<1)return (m*1e3).toPrecision(3)+' mm';
+  if(m<1e3)return m.toPrecision(3)+' m';
+  return (m/1e3).toPrecision(3)+' km';
+}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function uniq(a){var s={},o=[];a.forEach(function(v){if(!s[v]){s[v]=1;o.push(v);}});return o;}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+/* ---------- regions ---------- */
+var REG=[
+ {id:'gamma',n:'Gamma rays',lo:0,hi:1e-11,col:'#f472b6'},
+ {id:'xray',n:'X-rays',lo:1e-11,hi:1e-8,col:'#c084fc'},
+ {id:'uv',n:'Ultraviolet',lo:1e-8,hi:4e-7,col:'#a78bfa'},
+ {id:'vis',n:'Visible',lo:4e-7,hi:7e-7,col:'#ffffff'},
+ {id:'ir',n:'Infrared',lo:7e-7,hi:1e-3,col:'#fb7185'},
+ {id:'micro',n:'Microwave',lo:1e-3,hi:1,col:'#2dd4bf'},
+ {id:'radio',n:'Radio waves',lo:1,hi:1e9,col:'#38bdf8'}];
+var REGCENTER={radio:1,micro:-2,ir:-5,vis:Math.log10(550e-9),uv:Math.log10(2e-7),xray:-9,gamma:-11.5};
+function regionOf(m){for(var i=0;i<REG.length;i++){if(m>=REG[i].lo&&m<REG[i].hi)return REG[i];}return REG[REG.length-1];}
+function regById(id){return REG.filter(function(r){return r.id===id;})[0];}
+
+/* ---------- state ---------- */
+var S={mode:'explore',view:'em',
+  em:{logL:REGCENTER.vis,mol:'H2O',mode:0},
+  ir:{key:'ethanol',labels:true,hidden:false,cursor:null,names:null},
+  uv:{key:'KMnO4',lam:526,c1:0,c2:0,unknown:false,hiddenC:0}};
+
+/* ====================================================================
+   MOLECULES
+   ==================================================================== */
+var MOLS={
+ H2O:{n:'H\u2082O',polar:true,el:['O','H','H'],mass:[16,1,1],bonds:[[0,1,1],[0,2,1]],
+   modes:['Symmetric stretch','Bend','Asymmetric stretch'],ir:[1,1,1],
+   pos:function(m,s){var l1=1,l2=1,t1=.912,t2=.912;
+     if(m===0){l1=l2=1+.14*s;}else if(m===1){t1=t2=.912+.24*s;}else{l1=1+.14*s;l2=1-.14*s;}
+     return [[0,0],[-l1*Math.sin(t1),l1*Math.cos(t1)],[l2*Math.sin(t2),l2*Math.cos(t2)]];}},
+ CO2:{n:'CO\u2082',polar:false,el:['C','O','O'],mass:[12,16,16],bonds:[[0,1,2],[0,2,2]],
+   modes:['Symmetric stretch','Asymmetric stretch','Bend'],ir:[0,1,1],
+   pos:function(m,s){var L=1.16;
+     if(m===0)return [[0,0],[-(L+.15*s),0],[L+.15*s,0]];
+     if(m===1){var d=.1*s;return [[-2.67*d,0],[-L+d,0],[L+d,0]];}
+     var e=.16*s;return [[0,-2.67*e],[-L,e],[L,e]];}},
+ HCl:{n:'HCl',polar:true,el:['H','Cl'],mass:[1,35.5],bonds:[[0,1,1]],modes:['Stretch'],ir:[1],
+   pos:function(m,s){var r=1.27+.16*s;return [[-r*35.5/36.5,0],[r/36.5,0]];}}
+};
+var ATOMC={O:'#fb7185',C:'#94a3b8',H:'#e6edf7',Cl:'#34d399'};
+var ATOMR={O:15,C:14,H:9,Cl:18};
+function molAtoms(key,mode,s,rot,unit){
+  var m=MOLS[key];var p=m.pos(Math.min(mode,m.modes.length-1),s);
+  var M=0,cx=0,cy=0;
+  for(var i=0;i<p.length;i++){M+=m.mass[i];cx+=m.mass[i]*p[i][0];cy+=m.mass[i]*p[i][1];}
+  cx/=M;cy/=M;var cr=Math.cos(rot),sr=Math.sin(rot);
+  return p.map(function(q,i){var x=q[0]-cx,y=q[1]-cy;return {el:m.el[i],x:(x*cr-y*sr)*unit,y:(x*sr+y*cr)*unit};});
+}
+function drawMolecule(x,key,mode,s,rot,cx,cy,unit){
+  var m=MOLS[key];var a=molAtoms(key,mode,s,rot,unit);
+  x.lineCap='round';
+  m.bonds.forEach(function(b){
+    var A=a[b[0]],B=a[b[1]];var dx=B.x-A.x,dy=B.y-A.y,L=Math.sqrt(dx*dx+dy*dy)||1;var nx=-dy/L*3.5,ny=dx/L*3.5;
+    x.strokeStyle='#5b6b86';x.lineWidth=b[2]===2?3:5;
+    if(b[2]===2){[1,-1].forEach(function(k){x.beginPath();x.moveTo(cx+A.x+nx*k,cy+A.y+ny*k);x.lineTo(cx+B.x+nx*k,cy+B.y+ny*k);x.stroke();});}
+    else{x.beginPath();x.moveTo(cx+A.x,cy+A.y);x.lineTo(cx+B.x,cy+B.y);x.stroke();}
+  });
+  a.forEach(function(q){
+    var r=ATOMR[q.el];x.fillStyle=ATOMC[q.el];x.beginPath();x.arc(cx+q.x,cy+q.y,r,0,Math.PI*2);x.fill();
+    x.fillStyle='#0a0f1a';x.font='bold 12px system-ui,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(q.el,cx+q.x,cy+q.y+1);
+  });
+  x.textBaseline='alphabetic';
+}
+
+/* ====================================================================
+   EM VIEW
+   ==================================================================== */
+function lamM(){return Math.pow(10,S.em.logL);}
+function accent(reg,l){return reg.id==='vis'?wl2css(l*1e9):reg.col;}
+var BRK=[{k:'R',n:'rotation',lo:8.3e-4,hi:.124,col:COL.teal},{k:'V',n:'vibration',lo:2.5e-6,hi:3.1e-5,col:COL.rose},{k:'E',n:'electronic',lo:1.03e-7,hi:8.3e-7,col:COL.violet}];
+
+function drawBar(){
+  var cv=$('#emBar');var f=fit(cv,104);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var pad=8,W=w-2*pad;var X=function(l){return pad+(l+12)/15*W;};
+  x.font='11px system-ui,sans-serif';x.textBaseline='alphabetic';
+  x.fillStyle=COL.mut;x.textAlign='left';x.fillText('\u2190 energy per photon increases',pad,11);
+  x.textAlign='right';x.fillText('wavelength increases \u2192',w-pad,11);
+  REG.forEach(function(r){
+    var a=Math.max(-12,r.lo>0?Math.log10(r.lo):-12),b=Math.min(3,Math.log10(Math.min(r.hi,1e9)));
+    var x0=X(a),x1=X(b);if(x1<=x0)return;
+    if(r.id==='vis'){var g=x.createLinearGradient(x0,0,x1,0);for(var i=0;i<=6;i++){g.addColorStop(i/6,wl2css(400+i*50));}x.fillStyle=g;}
+    else{x.fillStyle=r.col;x.globalAlpha=.78;}
+    x.fillRect(x0,18,x1-x0,32);x.globalAlpha=1;
+    var tw=x.measureText(r.n).width;
+    if(x1-x0>tw+8){x.fillStyle='#04121a';x.textAlign='center';x.fillText(r.n,(x0+x1)/2,38);}
+  });
+  var ticks=[[-12,'1 pm'],[-9,'1 nm'],[-6,'1 \u00b5m'],[-3,'1 mm'],[0,'1 m'],[3,'1 km']];
+  x.strokeStyle=COL.mut;x.fillStyle=COL.mut;x.lineWidth=1;
+  ticks.forEach(function(t){var px=X(t[0]);x.beginPath();x.moveTo(px,50);x.lineTo(px,56);x.stroke();
+    x.textAlign=t[0]===-12?'left':(t[0]===3?'right':'center');x.fillText(t[1],px,68);});
+  var narrow=W<560;var L=S.em.logL;
+  BRK.forEach(function(b){
+    var a=X(Math.log10(b.lo)),c=X(Math.log10(b.hi));var inb=lamM()>=b.lo&&lamM()<=b.hi;
+    x.strokeStyle=inb?COL.amber:b.col;x.lineWidth=inb?3:2;
+    x.beginPath();x.moveTo(a,76);x.lineTo(a,82);x.lineTo(c,82);x.lineTo(c,76);x.stroke();
+    x.fillStyle=inb?COL.amber:b.col;x.textAlign='center';x.fillText(narrow?b.k:b.n,(a+c)/2,96);
+  });
+  var mx=X(L);x.strokeStyle=COL.amber;x.lineWidth=2;x.beginPath();x.moveTo(mx,14);x.lineTo(mx,84);x.stroke();
+  x.fillStyle=COL.amber;x.beginPath();x.moveTo(mx-6,14);x.lineTo(mx+6,14);x.lineTo(mx,22);x.closePath();x.fill();
+  cv.setAttribute('aria-valuetext',fmtLam(lamM())+', '+regionOf(lamM()).n);
+}
+function drawVis(){
+  var cv=$('#visBar');var f=fit(cv,46);var x=f.x,w=f.w;x.clearRect(0,0,w,46);
+  var pad=8,W=w-2*pad;var g=x.createLinearGradient(pad,0,pad+W,0);
+  for(var i=0;i<=12;i++){g.addColorStop(i/12,wl2css(400+i*25));}
+  x.fillStyle=g;x.fillRect(pad,14,W,14);
+  x.font='11px system-ui,sans-serif';x.fillStyle=COL.mut;x.textAlign='left';x.fillText('Visible light, zoomed in: 400 nm',pad,10);
+  x.textAlign='right';x.fillText('700 nm',pad+W,10);
+  var l=lamM()*1e9;
+  if(l>=400&&l<=700){var px=pad+(l-400)/300*W;x.strokeStyle=COL.amber;x.lineWidth=2;x.beginPath();x.moveTo(px,10);x.lineTo(px,32);x.stroke();
+    x.fillStyle=COL.amber;x.textAlign=px>w-70?'right':'left';x.fillText(Math.round(l)+' nm',px+(px>w-70?-4:4),43);}
+  else{x.textAlign='left';x.fillStyle=COL.mut;x.fillText('Current wavelength is outside the visible range.',pad,43);}
+}
+function updateRead(){
+  var l=lamM(),reg=regionOf(l),nu=C/l,E=H*nu;
+  $('#emRead').innerHTML=
+   '<div class="rb"><span>Region</span><b style="color:'+(reg.id==='vis'?wl2css(l*1e9):reg.col)+'">'+reg.n+'</b></div>'+
+   '<div class="rb"><span>Wavelength, \u03bb</span><b class="mono">'+fmtLam(l)+'</b></div>'+
+   '<div class="rb"><span>Frequency, \u03bd = c/\u03bb</span><b class="mono">'+sci(nu,3)+' Hz</b></div>'+
+   '<div class="rb"><span>Photon energy, E = h\u03bd</span><b class="mono">'+sci(E,3)+' J</b><span class="mono">'+(E/EV<1e-3?sci(E/EV,2):(E/EV).toPrecision(3))+' eV</span></div>';
+  $$('#jump .chip').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-r')===reg.id);});
+}
+function updateMolUI(){
+  var l=lamM(),reg=regionOf(l),m=MOLS[S.em.mol];
+  $$('#molChips .chip').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-m')===S.em.mol);});
+  $('#modeRow').hidden=reg.id!=='ir';
+  var mc=$('#modeChips');mc.innerHTML='';
+  m.modes.forEach(function(n,i){var b=document.createElement('button');b.className='chip'+(i===S.em.mode?' on':'');b.textContent=n;b.onclick=function(){S.em.mode=i;updateMolUI();};mc.appendChild(b);});
+  var t='';
+  if(reg.id==='radio')t='Radio photons carry too little energy to change molecular rotation, vibration, or electron levels. (Radio waves are used for nuclear spin in NMR, which is outside AP Chemistry.)';
+  else if(reg.id==='micro')t=m.polar?'<b>Microwave radiation is associated with transitions in molecular rotational levels.</b> The molecule\u2019s dipole interacts with the oscillating field of the photon, and the molecule spins faster.':
+     'Microwaves match rotational levels, but <b>CO\u2082 is nonpolar</b>: it has no dipole for the field to turn, so it does not absorb microwaves. <span class="ext">(Extension beyond the CED.)</span>';
+  else if(reg.id==='ir'){t='<b>Infrared radiation is associated with transitions in molecular vibrational levels.</b> Bonds stretch and bend with larger amplitude. Mode shown: '+m.modes[Math.min(S.em.mode,m.modes.length-1)]+'.';
+     if(!m.ir[Math.min(S.em.mode,m.modes.length-1)])t+=' <span class="ext">Extension: this mode does not change the dipole, so it does not absorb IR.</span>';}
+  else if(reg.id==='vis'||reg.id==='uv')t='<b>Ultraviolet/visible radiation is associated with transitions in electronic energy levels.</b> An electron moves from a lower to a higher energy level, then relaxes.';
+  else if(reg.id==='xray')t='X-ray photons carry enough energy to remove inner-shell electrons completely (ionization). This is beyond Topic 3.11.';
+  else t='Gamma rays are the most energetic photons and involve changes in atomic nuclei. This is beyond Topic 3.11.';
+  $('#molNote').innerHTML=t;
+  var lt='';
+  if(reg.id==='micro')lt='Rotational levels are packed closely together, so a low-energy microwave photon can move the molecule between them. Typical gap: about 10'+sup(-4)+' eV.';
+  else if(reg.id==='ir')lt='Vibrational levels are spaced farther apart than rotational levels. Typical gap: roughly 0.05 to 0.5 eV.';
+  else if(reg.id==='vis'||reg.id==='uv')lt='Electronic levels are spaced much farther apart, so this takes a high-energy photon. Typical gap: roughly 2 to 10 eV.';
+  else if(reg.id==='xray')lt='The photon energy is larger than the energy holding an inner electron in the atom, so the electron leaves.';
+  else lt='No molecular transition from Topic 3.11 is shown for this region.';
+  $('#lvlNote').innerHTML=lt;
+}
+function renderEM(){drawBar();drawVis();updateRead();updateMolUI();}
+function setLog(v){S.em.logL=clamp(v,-12,3);renderEM();}
+
+function phaseExc(ph){return ph<.35?0:ph<.5?(ph-.35)/.15:ph<.8?1:ph<1?1-(ph-.8)/.2:0;}
+
+function drawMolCanvas(t){
+  var cv=$('#molCv');var f=fit(cv,250);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var l=lamM(),reg=regionOf(l),col=accent(reg,l);
+  var cx=w*.64,cy=h/2+4,unit=Math.min(52,h/4.6);
+  var lp=12+(S.em.logL+12)/15*150;var amp=17;
+  var endX=cx-92;
+  x.strokeStyle=col;x.lineWidth=2.2;x.beginPath();
+  for(var px=6;px<=endX;px+=2){var yy=cy+amp*Math.sin(2*Math.PI*(px-t*70)/lp);if(px===6)x.moveTo(px,yy);else x.lineTo(px,yy);}
+  x.stroke();
+  x.fillStyle=COL.mut;x.font='11px system-ui,sans-serif';x.textAlign='left';x.fillText('photon (not to scale)',8,cy+amp+16);
+  var ph=(t%3.6)/3.6,exc=phaseExc(ph);var m=MOLS[S.em.mol];
+  var rot=0,s=0;
+  if(reg.id==='micro'&&m.polar)rot=t*2.2;
+  if(reg.id==='ir')s=Math.sin(t*2*Math.PI*1.1);
+  if(reg.id==='vis'||reg.id==='uv'){
+    var rad=unit*2.1*(.85+.35*exc);var g=x.createRadialGradient(cx,cy,4,cx,cy,rad);
+    g.addColorStop(0,reg.id==='vis'?wl2css(l*1e9,.1+.3*exc):'rgba(167,139,250,'+(.1+.3*exc)+')');
+    g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.beginPath();x.arc(cx,cy,rad,0,Math.PI*2);x.fill();
+  }
+  if(reg.id==='micro'&&m.polar){x.strokeStyle='rgba(45,212,191,.35)';x.lineWidth=2;x.setLineDash([4,5]);x.beginPath();x.arc(cx,cy,unit*1.6,0,Math.PI*2);x.stroke();x.setLineDash([]);}
+  drawMolecule(x,S.em.mol,S.em.mode,s,rot,cx,cy,unit);
+  if(reg.id==='xray'||reg.id==='gamma'){
+    if(reg.id==='xray'&&ph>.35){var u=(ph-.35)/.65;x.fillStyle='rgba(251,191,36,'+(1-u)+')';x.beginPath();x.arc(cx+20+u*(w-cx-40),cy-10-u*60,5,0,Math.PI*2);x.fill();}
+  }
+  x.fillStyle=COL.mut;x.textAlign='center';x.fillText(m.polar?'polar: has a dipole':'nonpolar: no dipole',cx,h-10);
+  x.textAlign='left';
+}
+function drawLevels(t){
+  var cv=$('#lvlCv');var f=fit(cv,250);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var l=lamM(),reg=regionOf(l),col=accent(reg,l),Eev=H*C/l/EV;
+  var ph=(t%3.6)/3.6,exc=phaseExc(ph);
+  var base=h-36,top=30,X0=w*.5,LW=Math.min(120,w*.3);
+  x.font='11px ui-monospace,monospace';x.fillStyle=COL.mut;x.strokeStyle=COL.mut;
+  x.lineWidth=1.5;x.beginPath();x.moveTo(20,base+8);x.lineTo(20,top-6);x.stroke();
+  x.beginPath();x.moveTo(15,top);x.lineTo(20,top-8);x.lineTo(25,top);x.stroke();
+  x.save();x.translate(12,(base+top)/2);x.rotate(-Math.PI/2);x.textAlign='center';x.fillText('energy',0,0);x.restore();
+  var lv=[],from=0,to=1,title='';
+  if(reg.id==='micro'){title='Rotational levels';for(var j=0;j<=4;j++)lv.push({y:base-j*(j+1)/20*(base-top-10),l:'J = '+j});from=0;to=1;}
+  else if(reg.id==='ir'){title='Vibrational levels (one electronic state)';for(var v=0;v<=4;v++)lv.push({y:base-(v*34-v*v*2.5),l:'v = '+v});from=0;to=1;}
+  else if(reg.id==='vis'||reg.id==='uv'){title='Electronic levels';
+    lv=[{y:base,l:'ground state'},{y:base-8},{y:base-16},{y:top+4,l:'excited state'},{y:top-4},{y:top-12}];from=0;to=3;}
+  else if(reg.id==='xray'){title='Inner-shell electron';lv=[{y:base,l:'inner shell'}];from=0;to=0;}
+  else{x.textAlign='center';x.fillStyle=COL.mut;x.fillText(reg.id==='radio'?'No transition from Topic 3.11 at this energy':'Nuclear transitions: not part of Topic 3.11',w/2,h/2);return;}
+  x.textAlign='center';x.fillStyle=COL.txt;x.font='12px system-ui,sans-serif';x.fillText(title,w/2,16);
+  x.font='11px ui-monospace,monospace';
+  lv.forEach(function(L){x.strokeStyle=COL.mut;x.lineWidth=2;x.beginPath();x.moveTo(X0-LW/2,L.y);x.lineTo(X0+LW/2,L.y);x.stroke();
+    if(L.l){x.fillStyle=COL.mut;x.textAlign='right';x.fillText(L.l,X0-LW/2-8,L.y+4);}});
+  if(reg.id==='xray'){
+    var gr=x.createLinearGradient(0,top-6,0,top+30);gr.addColorStop(0,'rgba(192,132,252,.0)');gr.addColorStop(1,'rgba(192,132,252,.28)');
+    x.fillStyle=gr;x.fillRect(X0-LW/2-30,top-6,LW+60,38);x.fillStyle=COL.mut;x.textAlign='left';x.fillText('free electron',X0+LW/2+8,top+14);
+    x.strokeStyle='rgba(192,132,252,.5)';x.setLineDash([4,4]);x.beginPath();x.moveTo(X0-LW/2-30,top+30);x.lineTo(X0+LW/2+30,top+30);x.stroke();x.setLineDash([]);
+    var yy=base;var xx=X0;if(ph>.35){var u=(ph-.35)/.4;u=Math.min(1,u);yy=base+(top+16-base)*u;xx=X0+u*LW*.4;}
+    x.fillStyle=COL.amber;x.beginPath();x.arc(xx,yy,6,0,Math.PI*2);x.fill();
+    x.fillStyle=col;x.textAlign='center';x.fillText('E = '+(Eev<1e3?Eev.toPrecision(3)+' eV':(Eev/1e3).toPrecision(3)+' keV'),w/2,h-8);
+    return;
+  }
+  var yf=lv[from].y,yt=lv[to].y,yd=yf+(yt-yf)*exc;
+  var ax=X0+LW/2+18;
+  if(ph>=.25&&ph<.5){x.strokeStyle=col;x.lineWidth=3;x.globalAlpha=Math.min(1,(ph-.25)/.1);
+    x.beginPath();x.moveTo(ax,yf);x.lineTo(ax,yt+6);x.stroke();x.beginPath();x.moveTo(ax-5,yt+11);x.lineTo(ax,yt+2);x.lineTo(ax+5,yt+11);x.stroke();x.globalAlpha=1;
+    x.fillStyle=col;x.textAlign='left';x.fillText('photon absorbed',Math.min(ax+8,w-92),(yf+yt)/2);}
+  if(ph>=.8){x.strokeStyle='rgba(142,160,189,.7)';x.lineWidth=1.5;x.setLineDash([3,4]);x.beginPath();x.moveTo(ax,yt);x.lineTo(ax,yf);x.stroke();x.setLineDash([]);
+    x.fillStyle=COL.mut;x.textAlign='left';x.fillText('relaxes',Math.min(ax+8,w-52),(yf+yt)/2);}
+  x.fillStyle=COL.amber;x.shadowColor=COL.amber;x.shadowBlur=10;x.beginPath();x.arc(X0,yd-0,6,0,Math.PI*2);x.fill();x.shadowBlur=0;
+  x.fillStyle=col;x.textAlign='center';x.font='12px ui-monospace,monospace';
+  x.fillText('E = hc/\u03bb = '+(Eev<.01?Eev.toExponential(2):Eev.toPrecision(3))+' eV',w/2,h-8);
+}
+
+/* ====================================================================
+   IR VIEW
+   ==================================================================== */
+var IRTAB=[
+ {k:'OHa',b:'O\u2013H (alcohol)',lo:3200,hi:3650,i:'strong, broad'},
+ {k:'OHc',b:'O\u2013H (carboxylic acid)',lo:2500,hi:3300,i:'strong, very broad'},
+ {k:'NH',b:'N\u2013H',lo:3300,hi:3500,i:'medium'},
+ {k:'CH',b:'C\u2013H',lo:2700,hi:3300,i:'medium'},
+ {k:'tCN',b:'C\u2261N',lo:2220,hi:2260,i:'medium'},
+ {k:'tCC',b:'C\u2261C',lo:2100,hi:2260,i:'medium to weak'},
+ {k:'dCO',b:'C=O',lo:1650,hi:1780,i:'strong'},
+ {k:'dCC',b:'C=C',lo:1600,hi:1680,i:'medium'},
+ {k:'sCO',b:'C\u2013O',lo:1050,hi:1250,i:'strong'},
+ {k:'sCN',b:'C\u2013N',lo:1020,hi:1230,i:'medium'}];
+var IRC={
+ methanol:{n:'Methanol',f:'CH\u2083OH',g:'Alcohol (\u2013OH)',bands:[
+  {c:3340,w:210,a:.85,s:'O\u2013H',l:'O\u2013H stretch (alcohol), strong and broad',k:'OHa'},
+  {c:2945,w:45,a:.55,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:2835,w:28,a:.45,s:'',l:'C\u2013H stretch',k:'CH'},
+  {c:1450,w:40,a:.3,s:'',l:'C\u2013H bend (not diagnostic)',k:null},{c:1030,w:30,a:.9,s:'C\u2013O',l:'C\u2013O stretch',k:'sCO'}]},
+ ethanol:{n:'Ethanol',f:'CH\u2083CH\u2082OH',g:'Alcohol (\u2013OH)',bands:[
+  {c:3350,w:220,a:.85,s:'O\u2013H',l:'O\u2013H stretch (alcohol), strong and broad',k:'OHa'},
+  {c:2975,w:50,a:.6,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:2880,w:28,a:.35,s:'',l:'C\u2013H stretch',k:'CH'},
+  {c:1450,w:40,a:.3,s:'',l:'C\u2013H bend (not diagnostic)',k:null},{c:1380,w:25,a:.3,s:'',l:'C\u2013H bend (not diagnostic)',k:null},
+  {c:1050,w:32,a:.88,s:'C\u2013O',l:'C\u2013O stretch',k:'sCO'},{c:880,w:18,a:.3,s:'',l:'skeleton vibration (not diagnostic)',k:null}]},
+ dme:{n:'Dimethyl ether',f:'CH\u2083OCH\u2083',g:'Ether (C\u2013O\u2013C)',bands:[
+  {c:2990,w:45,a:.5,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:2930,w:25,a:.5,s:'',l:'C\u2013H stretch',k:'CH'},{c:2830,w:20,a:.5,s:'',l:'C\u2013H stretch (on O\u2013CH\u2083)',k:'CH'},
+  {c:1465,w:35,a:.3,s:'',l:'C\u2013H bend (not diagnostic)',k:null},{c:1100,w:38,a:.92,s:'C\u2013O',l:'C\u2013O stretch',k:'sCO'}]},
+ propanol:{n:'2-Propanol',f:'CH\u2083CH(OH)CH\u2083',g:'Alcohol (\u2013OH)',bands:[
+  {c:3350,w:230,a:.85,s:'O\u2013H',l:'O\u2013H stretch (alcohol), strong and broad',k:'OHa'},
+  {c:2975,w:45,a:.65,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:1465,w:30,a:.3,s:'',l:'C\u2013H bend (not diagnostic)',k:null},{c:1380,w:22,a:.35,s:'',l:'C\u2013H bend (not diagnostic)',k:null},
+  {c:1130,w:28,a:.85,s:'C\u2013O',l:'C\u2013O stretch',k:'sCO'},{c:950,w:22,a:.5,s:'',l:'skeleton vibration (not diagnostic)',k:null}]},
+ acetone:{n:'Acetone',f:'CH\u2083COCH\u2083',g:'Ketone (C=O)',bands:[
+  {c:2970,w:40,a:.25,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:1715,w:26,a:.93,s:'C=O',l:'C=O stretch (ketone), strong and sharp',k:'dCO'},
+  {c:1420,w:22,a:.35,s:'',l:'C\u2013H bend (not diagnostic)',k:null},{c:1360,w:20,a:.65,s:'',l:'C\u2013H bend (not diagnostic)',k:null},
+  {c:1220,w:26,a:.45,s:'',l:'C\u2013C(=O)\u2013C skeleton stretch (not a C\u2013O bond)',k:null}]},
+ acetic:{n:'Acetic acid',f:'CH\u2083COOH',g:'Carboxylic acid (\u2013COOH)',bands:[
+  {c:3000,w:330,a:.78,s:'O\u2013H',l:'O\u2013H stretch (carboxylic acid), very broad',k:'OHc'},
+  {c:2940,w:28,a:.25,s:'',l:'C\u2013H stretch',k:'CH'},{c:1710,w:26,a:.92,s:'C=O',l:'C=O stretch, strong',k:'dCO'},
+  {c:1410,w:30,a:.5,s:'',l:'C\u2013H / O\u2013H bend (not diagnostic)',k:null},{c:1290,w:28,a:.75,s:'C\u2013O',l:'C\u2013O stretch',k:'sCO'},{c:940,w:45,a:.5,s:'',l:'O\u2013H bend (not diagnostic)',k:null}]},
+ acetonitrile:{n:'Acetonitrile',f:'CH\u2083CN',g:'Nitrile (C\u2261N)',bands:[
+  {c:2950,w:40,a:.3,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:2250,w:14,a:.55,s:'C\u2261N',l:'C\u2261N stretch',k:'tCN'},
+  {c:1375,w:25,a:.45,s:'',l:'C\u2013H bend (not diagnostic)',k:null},{c:920,w:20,a:.35,s:'',l:'skeleton vibration (not diagnostic)',k:null}]},
+ methylamine:{n:'Methylamine',f:'CH\u2083NH\u2082',g:'Amine (\u2013NH\u2082)',bands:[
+  {c:3370,w:28,a:.42,s:'N\u2013H',l:'N\u2013H stretch',k:'NH'},{c:3290,w:28,a:.35,s:'',l:'N\u2013H stretch',k:'NH'},
+  {c:2930,w:45,a:.6,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},{c:2800,w:30,a:.4,s:'',l:'C\u2013H stretch',k:'CH'},
+  {c:1600,w:45,a:.4,s:'',l:'N\u2013H bend (not diagnostic)',k:null},{c:1050,w:35,a:.5,s:'C\u2013N',l:'C\u2013N stretch',k:'sCN'}]},
+ propene:{n:'Propene',f:'CH\u2083CH=CH\u2082',g:'Alkene (C=C)',bands:[
+  {c:3080,w:22,a:.35,s:'',l:'=C\u2013H stretch',k:'CH'},{c:2960,w:40,a:.6,s:'C\u2013H',l:'C\u2013H stretch',k:'CH'},
+  {c:1645,w:20,a:.5,s:'C=C',l:'C=C stretch',k:'dCC'},{c:1420,w:22,a:.35,s:'',l:'C\u2013H bend (not diagnostic)',k:null},
+  {c:990,w:15,a:.75,s:'',l:'=C\u2013H bend (not diagnostic)',k:null},{c:910,w:15,a:.8,s:'',l:'=C\u2013H bend (not diagnostic)',k:null}]}
+};
+var IRKEYS=Object.keys(IRC);
+function irT(comp,wn){var t=.97;comp.bands.forEach(function(b){t*=1-b.a*Math.exp(-Math.pow((wn-b.c)/b.w,2));});return t*100;}
+function drawIR(cv,comp,o){
+  o=o||{};var hh=o.h||300;var f=fit(cv,hh);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var L=46,R=12,T=14,B=38,PW=w-L-R,PH=h-T-B;
+  var X=function(wn){return L+(4000-wn)/3600*PW;},Y=function(t){return T+(100-t)/100*PH;};
+  x.fillStyle='rgba(13,21,36,.8)';x.fillRect(L,T,PW,PH);
+  x.font='11px ui-monospace,monospace';x.lineWidth=1;
+  var step=w<480?1000:500;
+  for(var wn=4000;wn>=500;wn-=500){x.strokeStyle='rgba(142,160,189,.14)';x.beginPath();x.moveTo(X(wn),T);x.lineTo(X(wn),T+PH);x.stroke();
+    if((4000-wn)%step===0){x.fillStyle=COL.mut;x.textAlign='center';x.fillText(String(wn),X(wn),T+PH+14);}}
+  for(var t=0;t<=100;t+=25){x.strokeStyle='rgba(142,160,189,.14)';x.beginPath();x.moveTo(L,Y(t));x.lineTo(L+PW,Y(t));x.stroke();x.fillStyle=COL.mut;x.textAlign='right';x.fillText(String(t),L-6,Y(t)+4);}
+  x.fillStyle=COL.mut;x.textAlign='center';x.font='12px system-ui,sans-serif';x.fillText('Wavenumber (cm\u207b\u00b9)',L+PW/2,h-6);
+  x.save();x.translate(11,T+PH/2);x.rotate(-Math.PI/2);x.fillText('% transmittance',0,0);x.restore();
+  x.strokeStyle=COL.teal;x.lineWidth=2;x.beginPath();
+  for(var i=0;i<=PW;i++){var v=4000-i/PW*3600;var py=Y(irT(comp,v));if(i===0)x.moveTo(L+i,py);else x.lineTo(L+i,py);}
+  x.stroke();
+  if(o.labels){
+    var bs=comp.bands.filter(function(b){return b.s;}).sort(function(a,b){return b.c-a.c;});var lastX=-99;
+    x.font='bold 11.5px system-ui,sans-serif';x.fillStyle=COL.amber;x.textAlign='center';
+    bs.forEach(function(b){var px=X(b.c);if(Math.abs(px-lastX)<26)return;lastX=px;x.fillText(b.s,px,Math.max(T+11,Y(irT(comp,b.c))-7));});
+  }
+  if(o.cursor!=null){var cx=X(o.cursor);x.strokeStyle=COL.amber;x.setLineDash([4,4]);x.lineWidth=1.5;x.beginPath();x.moveTo(cx,T);x.lineTo(cx,T+PH);x.stroke();x.setLineDash([]);}
+  return {L:L,PW:PW};
+}
+function irCompNow(){return IRC[S.ir.key];}
+function renderIR(){
+  var chips=$('#irChips');chips.innerHTML='';
+  if(S.ir.hidden&&S.ir.names){
+    S.ir.names.forEach(function(nm,i){var b=document.createElement('button');b.className='chip'+(S.ir.key===nm.key?' on':'');b.textContent='Unknown '+nm.tag;b.onclick=function(){S.ir.key=nm.key;S.ir.cursor=null;renderIR();};chips.appendChild(b);});
+  }else{
+    IRKEYS.forEach(function(k){var b=document.createElement('button');b.className='chip'+(S.ir.key===k?' on':'');b.innerHTML=IRC[k].n+' <span class="mono" style="color:var(--mut)">'+IRC[k].f+'</span>';b.onclick=function(){S.ir.key=k;S.ir.cursor=null;renderIR();};chips.appendChild(b);});
+  }
+  var lb=$('#irLab');lb.hidden=S.ir.hidden;lb.classList.toggle('on',S.ir.labels);
+  drawIR($('#irCv'),irCompNow(),{labels:S.ir.labels&&!S.ir.hidden,cursor:S.ir.cursor,h:300});
+  buildIRTable();irCursorInfo();
+}
+function buildIRTable(){
+  var t=$('#irTab');if(t.getAttribute('data-built'))return;t.setAttribute('data-built','1');
+  var h='<tr><th>Bond</th><th>Wavenumber (cm\u207b\u00b9)</th><th>Intensity</th></tr>';
+  IRTAB.forEach(function(r){h+='<tr data-k="'+r.k+'"><td>'+r.b+'</td><td class="mono">'+r.lo+' to '+r.hi+'</td><td>'+r.i+'</td></tr>';});
+  t.innerHTML=h;
+}
+function irCursorInfo(){
+  var wn=S.ir.cursor;var rd=$('#irRead');
+  $$('#irTab tr[data-k]').forEach(function(r){var row=IRTAB.filter(function(q){return q.k===r.getAttribute('data-k');})[0];r.classList.toggle('on',wn!=null&&wn>=row.lo&&wn<=row.hi);});
+  if(wn==null){rd.textContent='Move over the spectrum to read a wavenumber.';return;}
+  var comp=irCompNow();var txt=Math.round(wn)+' cm\u207b\u00b9, '+irT(comp,wn).toFixed(0)+'% transmittance';
+  if(!S.ir.hidden){var best=null,bd=1e9;comp.bands.forEach(function(b){var d=Math.abs(wn-b.c);if(d<b.w*.8&&d<bd){bd=d;best=b;}});if(best)txt+='  |  '+best.l;}
+  rd.textContent=txt;
+}
+function irPointer(e){
+  var cv=$('#irCv');var r=cv.getBoundingClientRect();if(!r.width)return;
+  var L=46,R=12,PW=r.width-L-R;var px=e.clientX-r.left;
+  S.ir.cursor=clamp(4000-(px-L)/PW*3600,400,4000);
+  renderIR();
+}
+/* bond vibration lab */
+var BONDS=[
+ {n:'O\u2013H',a:'O',b:'H',ma:16,mb:1,wn:3350},{n:'C\u2013H',a:'C',b:'H',ma:12,mb:1,wn:2950},
+ {n:'C\u2261C',a:'C',b:'C',ma:12,mb:12,wn:2150},{n:'C\u2261N',a:'C',b:'N',ma:12,mb:14,wn:2240},
+ {n:'C=O',a:'C',b:'O',ma:12,mb:16,wn:1715},{n:'C=C',a:'C',b:'C',ma:12,mb:12,wn:1640},{n:'C\u2013O',a:'C',b:'O',ma:12,mb:16,wn:1100}]
+ .sort(function(p,q){return q.wn-p.wn;});
+var ATOMC2={O:'#fb7185',C:'#94a3b8',H:'#e6edf7',N:'#60a5fa'};
+function drawBondLab(t){
+  var cv=$('#bondCv');var rowH=34;var f=fit(cv,BONDS.length*rowH+8);var x=f.x,w=f.w;x.clearRect(0,0,w,f.h);
+  x.font='12px ui-monospace,monospace';
+  BONDS.forEach(function(B,i){
+    var y=rowH*i+rowH/2+4;var fr=B.wn/2000;var s=Math.sin(t*2*Math.PI*fr);
+    var cx=w*.46,sep=46+8*s;
+    var ra=7+2.4*Math.sqrt(B.ma),rb=7+2.4*Math.sqrt(B.mb);
+    x.fillStyle=COL.txt;x.textAlign='left';x.fillText(B.n,8,y+4);
+    var xa=cx-sep/2,xb=cx+sep/2;
+    x.strokeStyle='#5b6b86';x.lineWidth=2;x.beginPath();x.moveTo(xa,y);
+    var n=8,sx=xa+ra,ex=xb-rb;for(var k=1;k<n;k++){x.lineTo(sx+(ex-sx)*k/n,y+(k%2?-5:5));}x.lineTo(ex,y);x.stroke();
+    x.fillStyle=ATOMC2[B.a];x.beginPath();x.arc(xa,y,ra,0,Math.PI*2);x.fill();
+    x.fillStyle=ATOMC2[B.b];x.beginPath();x.arc(xb,y,rb,0,Math.PI*2);x.fill();
+    x.fillStyle=COL.mut;x.textAlign='right';x.fillText(B.wn+' cm\u207b\u00b9',w-8,y+4);
+  });
+}
+
+/* ====================================================================
+   UV-VIS VIEW
+   ==================================================================== */
+var UVS={
+ water:{n:'Water (blank)',f:'H\u2082O',max:1,bands:[],note:'Colorless: no visible photons match an electronic gap.'},
+ KMnO4:{n:'Potassium permanganate',f:'KMnO\u2084(aq)',max:.0006,bands:[{c:526,w:18,e:2300},{c:546,w:16,e:1800},{c:507,w:15,e:1300},{c:310,w:40,e:1500}]},
+ CuSO4:{n:'Copper(II) sulfate',f:'CuSO\u2084(aq)',max:.15,bands:[{c:800,w:130,e:12}]},
+ K2Cr2O7:{n:'Potassium dichromate',f:'K\u2082Cr\u2082O\u2087(aq)',max:.0005,bands:[{c:350,w:50,e:3100},{c:440,w:55,e:400}]},
+ NiSO4:{n:'Nickel(II) sulfate',f:'NiSO\u2084(aq)',max:.3,bands:[{c:395,w:35,e:5.5},{c:720,w:60,e:2.2}]},
+ CoCl2:{n:'Cobalt(II) chloride',f:'CoCl\u2082(aq)',max:.35,bands:[{c:510,w:55,e:4.8}]},
+ NO2:{n:'Nitrogen dioxide',f:'NO\u2082(g)',max:.01,bands:[{c:400,w:75,e:160}]},
+ N2O4:{n:'Dinitrogen tetroxide',f:'N\u2082O\u2084(g)',max:.0003,bands:[{c:215,w:40,e:6000}]}
+};
+var UVKEYS=Object.keys(UVS);
+function ab(key,l,c){var s=0;UVS[key].bands.forEach(function(b){s+=b.e*Math.exp(-Math.pow((l-b.c)/b.w,2));});return s*c;}
+function lmaxOf(key){var best=null,bv=0;for(var l=200;l<=800;l++){var v=ab(key,l,1);if(v>bv){bv=v;best=l;}}return best;}
+function fmtC(c){if(c>=.01)return c.toFixed(3)+' M';if(c>=1e-4)return (c*1e3).toFixed(3)+' mM';return (c*1e6).toFixed(1)+' \u00b5M';}
+function transColor(key,c){
+  var sr=0,sg=0,sb=0,wr=0,wg=0,wb=0;
+  for(var l=400;l<=700;l+=5){var q=wl2rgb(l),T=Math.pow(10,-ab(key,l,c));sr+=q[0]*T;sg+=q[1]*T;sb+=q[2]*T;wr+=q[0];wg+=q[1];wb+=q[2];}
+  var g=function(a,b){return Math.round(255*Math.pow(clamp(a/b,0,1),1.6));};
+  return [g(sr,wr),g(sg,wg),g(sb,wb)];
+}
+function solnFill(key,c){
+  var col=transColor(key,c);var pk=0;for(var l=300;l<=800;l+=10)pk=Math.max(pk,ab(key,l,c));
+  var k=Math.min(1,pk/1.1);var bg=[22,34,58];
+  var m=function(i){return Math.round(bg[i]+(col[i]-bg[i])*(.3+.7*k));};
+  return 'rgb('+m(0)+','+m(1)+','+m(2)+')';
+}
+function setUVkey(k){S.uv.key=k;var u=UVS[k];S.uv.c1=u.max*.6;S.uv.c2=u.max*.3;S.uv.lam=lmaxOf(k)||550;}
+function renderUV(rebuild){
+  var u=UVS[S.uv.key];
+  if(rebuild!==false){
+    var chips=$('#uvChips');chips.innerHTML='';
+    UVKEYS.forEach(function(k){var b=document.createElement('button');b.className='chip'+(S.uv.key===k?' on':'');b.innerHTML=UVS[k].n+' <span class="mono" style="color:var(--mut)">'+UVS[k].f+'</span>';b.onclick=function(){var keep=S.mode==='guided'?S.uv.lam:null;S.uv.unknown=false;setUVkey(k);if(keep)S.uv.lam=keep;renderUV();};chips.appendChild(b);});
+  }
+  $('#lamR').value=Math.round(S.uv.lam);
+  $('#c1R').value=Math.round(S.uv.c1/u.max*1000);$('#c2R').value=Math.round(S.uv.c2/u.max*1000);
+  $('#c1L').textContent=S.uv.unknown?'Unknown':'Sample 1';
+  $('#c1R').disabled=S.uv.unknown;
+  drawUV();
+}
+function drawUV(){
+  var k=S.uv.key,u=UVS[k],l=S.uv.lam;
+  var A1=ab(k,l,S.uv.c1),A2=ab(k,l,S.uv.c2);
+  $('#lamO').textContent=Math.round(l)+' nm';
+  $('#c1O').textContent=S.uv.unknown?'hidden':fmtC(S.uv.c1);$('#c2O').textContent=fmtC(S.uv.c2);
+  var E=H*C/(l*1e-9);
+  var tc=transColor(k,S.uv.c1);
+  var lm=lmaxOf(k);
+  $('#uvColorTxt').textContent=lm&&u.bands.length?('Peak absorbance near '+lm+' nm'):'No absorbance in this range';
+  var ratio=A2>1e-9?A1/A2:null;var cratio=S.uv.c2>0?S.uv.c1/S.uv.c2:null;
+  function swatch(c){var cc=transColor(k,c);return '<span style="display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px;border:1px solid #334;background:rgb('+cc[0]+','+cc[1]+','+cc[2]+')"></span>';}
+  $('#uvRead').innerHTML=
+   '<div class="rb"><span>Photon at '+Math.round(l)+' nm</span><b class="mono">'+sci(E,3)+' J</b><span class="mono">'+(E/EV).toFixed(2)+' eV</span></div>'+
+   '<div class="rb"><span>Sample 1</span><b class="mono">A = '+A1.toFixed(3)+'</b><span class="mono">%T = '+(Math.pow(10,-A1)*100).toFixed(1)+'</span></div>'+
+   '<div class="rb"><span>Sample 2</span><b class="mono">A = '+A2.toFixed(3)+'</b><span class="mono">%T = '+(Math.pow(10,-A2)*100).toFixed(1)+'</span></div>'+
+   '<div class="rb"><span>Color seen (Sample 1)</span><b>'+swatch(S.uv.c1)+(u.bands.length?'transmitted':'colorless')+'</b></div>'+
+   '<div class="rb"><span>A\u2081 \u00f7 A\u2082</span><b class="mono">'+(ratio==null?'\u2014':ratio.toFixed(2))+'</b>'+(S.uv.unknown?'':'<span class="mono">c\u2081 \u00f7 c\u2082 = '+(cratio==null?'\u2014':cratio.toFixed(2))+'</span>')+'</div>';
+  var nt='';
+  if(!u.bands.length)nt='This sample is colorless. It does not absorb at any wavelength in this window, so A stays at 0.';
+  else{var vis=(l>=400&&l<=700);nt='At '+Math.round(l)+' nm the photon energy is '+(E/EV).toFixed(2)+' eV. Light is absorbed only if that energy matches the gap between two electronic levels'+(vis?' (visible).':' ('+(l<400?'ultraviolet, invisible to the eye).':'near-infrared, invisible to the eye).'));}
+  $('#uvNote').textContent=nt;
+  drawBeam(A1,A2,l);drawUVChart();drawBeer(A1,A2);
+}
+function drawBeam(A1,A2,l){
+  var cv=$('#beamCv');var f=fit(cv,186);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var k=S.uv.key,beam=l<380?'rgba(167,139,250,':(l>700?'rgba(251,113,133,':null);
+  var bc=function(a){return beam?beam+a+')':wl2css(l,a);};
+  var lampX=26,slitX=96,cuvX=w*.46,cuvW=Math.max(40,Math.min(60,w*.1)),detX=w-64;
+  var lanes=[{y:50,A:A1,c:S.uv.c1,n:'Sample 1'},{y:134,A:A2,c:S.uv.c2,n:'Sample 2'}];
+  x.font='11px system-ui,sans-serif';
+  var my=92;
+  x.fillStyle='#f6d36b';x.shadowColor='#fbbf24';x.shadowBlur=12;x.beginPath();x.arc(lampX,my,11,0,Math.PI*2);x.fill();x.shadowBlur=0;
+  x.fillStyle=COL.mut;x.textAlign='center';x.fillText('lamp',lampX,my+28);
+  x.fillStyle=COL.pan2;x.strokeStyle=COL.mut;x.lineWidth=1.5;x.fillRect(slitX-16,my-24,32,48);x.strokeRect(slitX-16,my-24,32,48);
+  x.fillStyle=COL.mut;x.fillText('selector',slitX,my+40);
+  x.strokeStyle='rgba(246,211,107,.5)';x.lineWidth=3;x.beginPath();x.moveTo(lampX+12,my);x.lineTo(slitX-16,my);x.stroke();
+  lanes.forEach(function(L){
+    x.strokeStyle=bc(.9);x.lineWidth=4;if(l<380||l>700)x.setLineDash([6,5]);
+    x.beginPath();x.moveTo(slitX+16,my);x.lineTo(slitX+40,L.y);x.lineTo(cuvX,L.y);x.stroke();
+    var T=Math.pow(10,-L.A);
+    x.strokeStyle=bc(.12+.88*T);x.beginPath();x.moveTo(cuvX+cuvW,L.y);x.lineTo(detX,L.y);x.stroke();x.setLineDash([]);
+    x.fillStyle=solnFill(k,L.c);x.strokeStyle='#9fb3d1';x.lineWidth=2;x.fillRect(cuvX,L.y-26,cuvW,52);x.strokeRect(cuvX,L.y-26,cuvW,52);
+    x.fillStyle=COL.mut;x.textAlign='center';x.fillText(L.n,cuvX+cuvW/2,L.y-31);
+    x.strokeStyle=COL.mut;x.lineWidth=1.5;x.strokeRect(detX,L.y-16,46,32);
+    x.fillStyle=bc(.15+.85*T);x.fillRect(detX+2,L.y-14,42*T,28);
+    x.fillStyle=COL.txt;x.textAlign='center';x.font='11px ui-monospace,monospace';x.fillText('A '+L.A.toFixed(2),detX+23,L.y+30);x.font='11px system-ui,sans-serif';
+  });
+  if(l<380||l>700){x.fillStyle=COL.mut;x.textAlign='left';x.fillText(l<380?'ultraviolet beam (invisible)':'near-infrared beam (invisible)',slitX+46,h-8);}
+}
+function drawUVChart(){
+  var cv=$('#uvCv');var f=fit(cv,250);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var L=42,R=10,T=12,B=40,PW=w-L-R,PH=h-T-B;var X=function(l){return L+(l-200)/600*PW;},Y=function(a){return T+(1-Math.min(a,2)/2)*PH;};
+  var k=S.uv.key;
+  x.fillStyle='rgba(167,139,250,.08)';x.fillRect(X(200),T,X(400)-X(200),PH);
+  x.font='11px ui-monospace,monospace';
+  for(var a=0;a<=2;a+=.5){x.strokeStyle='rgba(142,160,189,.14)';x.beginPath();x.moveTo(L,Y(a));x.lineTo(L+PW,Y(a));x.stroke();x.fillStyle=COL.mut;x.textAlign='right';x.fillText(a.toFixed(1),L-5,Y(a)+4);}
+  for(var l=200;l<=800;l+=100){x.strokeStyle='rgba(142,160,189,.14)';x.beginPath();x.moveTo(X(l),T);x.lineTo(X(l),T+PH);x.stroke();x.fillStyle=COL.mut;x.textAlign='center';x.fillText(String(l),X(l),T+PH+13);}
+  var g=x.createLinearGradient(X(400),0,X(700),0);for(var i=0;i<=6;i++)g.addColorStop(i/6,wl2css(400+i*50));
+  x.fillStyle=g;x.fillRect(X(400),T+PH+18,X(700)-X(400),6);
+  x.fillStyle=COL.mut;x.font='12px system-ui,sans-serif';x.textAlign='center';x.fillText('Wavelength (nm)',L+PW/2,h-4);
+  x.save();x.translate(11,T+PH/2);x.rotate(-Math.PI/2);x.fillText('Absorbance',0,0);x.restore();
+  x.font='11px system-ui,sans-serif';x.fillStyle='rgba(167,139,250,.8)';x.textAlign='left';x.fillText('UV',L+4,T+12);
+  [[S.uv.c1,COL.teal],[S.uv.c2,COL.amber]].forEach(function(p){
+    x.strokeStyle=p[1];x.lineWidth=2;x.beginPath();
+    for(var i=0;i<=PW;i++){var l2=200+i/PW*600;var yy=Y(ab(k,l2,p[0]));if(i===0)x.moveTo(L+i,yy);else x.lineTo(L+i,yy);}
+    x.stroke();});
+  var mx=X(S.uv.lam);x.strokeStyle='#e6edf7';x.setLineDash([4,4]);x.lineWidth=1.5;x.beginPath();x.moveTo(mx,T);x.lineTo(mx,T+PH);x.stroke();x.setLineDash([]);
+  x.fillStyle=COL.txt;x.beginPath();x.moveTo(mx-5,T);x.lineTo(mx+5,T);x.lineTo(mx,T+7);x.closePath();x.fill();
+}
+function drawBeer(A1,A2){
+  var cv=$('#beerCv');var f=fit(cv,250);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var k=S.uv.key,u=UVS[k],l=S.uv.lam;
+  var L=42,R=14,T=12,B=40,PW=w-L-R,PH=h-T-B;var X=function(c){return L+c/u.max*PW;},Y=function(a){return T+(1-Math.min(a,2)/2)*PH;};
+  x.font='11px ui-monospace,monospace';
+  for(var a=0;a<=2;a+=.5){x.strokeStyle='rgba(142,160,189,.14)';x.beginPath();x.moveTo(L,Y(a));x.lineTo(L+PW,Y(a));x.stroke();x.fillStyle=COL.mut;x.textAlign='right';x.fillText(a.toFixed(1),L-5,Y(a)+4);}
+  x.strokeStyle='rgba(142,160,189,.5)';x.beginPath();x.moveTo(L,T+PH);x.lineTo(L+PW,T+PH);x.stroke();
+  x.fillStyle=COL.mut;x.textAlign='left';x.fillText('0',L,T+PH+14);x.textAlign='right';x.fillText(fmtC(u.max),L+PW,T+PH+14);
+  x.font='12px system-ui,sans-serif';x.textAlign='center';x.fillText('Concentration',L+PW/2,h-4);
+  x.save();x.translate(11,T+PH/2);x.rotate(-Math.PI/2);x.fillText('Absorbance at '+Math.round(l)+' nm',0,0);x.restore();
+  var slope=ab(k,l,u.max);
+  x.strokeStyle='rgba(230,237,247,.55)';x.lineWidth=2;x.beginPath();x.moveTo(X(0),Y(0));
+  var cEnd=slope>2?2/slope*u.max:u.max;x.lineTo(X(cEnd),Y(slope*cEnd/u.max));x.stroke();
+  [[S.uv.c1,A1,COL.teal,S.uv.unknown],[S.uv.c2,A2,COL.amber,false]].forEach(function(p){
+    if(p[3])return;x.fillStyle=p[2];x.beginPath();x.arc(X(p[0]),Y(p[1]),6,0,Math.PI*2);x.fill();});
+  if(S.uv.unknown){x.strokeStyle=COL.teal;x.setLineDash([4,4]);x.beginPath();x.moveTo(L,Y(A1));x.lineTo(L+PW,Y(A1));x.stroke();x.setLineDash([]);
+    x.fillStyle=COL.teal;x.textAlign='left';x.font='11px system-ui,sans-serif';x.fillText('unknown sample',L+6,Y(A1)-6);}
+}
+function uvLamFromPointer(e){
+  var cv=$('#uvCv');var r=cv.getBoundingClientRect();if(!r.width)return;
+  var L=42,R=10,PW=r.width-L-R;S.uv.lam=clamp(Math.round(200+(e.clientX-r.left-L)/PW*600),200,800);
+  $('#lamR').value=S.uv.lam;drawUV();
+}
+
+/* ====================================================================
+   WIRING
+   ==================================================================== */
+function setView(v){
+  S.view=v;
+  ['em','ir','uv'].forEach(function(id){$('#v-'+id).hidden=(S.mode==='quiz')||id!==v;});
+  $$('#toolTabs .tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-view')===v);});
+  renderView();
+}
+function renderView(){if(S.view==='em')renderEM();else if(S.view==='ir')renderIR();else renderUV();}
+function setMode(m){
+  S.mode=m;
+  $$('#modeTabs .tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===m);});
+  $('#task').hidden=m!=='guided';$('#toolTabs').hidden=m!=='explore';$('#v-quiz').hidden=m!=='quiz';
+  if(m!=='guided'){S.ir.hidden=false;S.ir.names=null;S.uv.unknown=false;}
+  if(m==='quiz'){['em','ir','uv'].forEach(function(id){$('#v-'+id).hidden=true;});showTiers();}
+  else if(m==='guided'){if(!G.steps)startInv(G.inv);else{renderTask();applyStep();}}
+  else setView(S.view);
+}
+function buildStatic(){
+  var j=$('#jump');
+  REG.slice().reverse().forEach(function(r){var b=document.createElement('button');b.className='chip';b.setAttribute('data-r',r.id);b.textContent=r.n;b.onclick=function(){setLog(REGCENTER[r.id]);};j.appendChild(b);});
+  var mc=$('#molChips');Object.keys(MOLS).forEach(function(k){var b=document.createElement('button');b.className='chip';b.setAttribute('data-m',k);b.textContent=MOLS[k].n;b.onclick=function(){S.em.mol=k;S.em.mode=0;updateMolUI();};mc.appendChild(b);});
+  $$('#modeTabs .tab').forEach(function(b){b.onclick=function(){setMode(b.getAttribute('data-mode'));};});
+  $$('#toolTabs .tab').forEach(function(b){b.onclick=function(){setView(b.getAttribute('data-view'));};});
+  var bar=$('#emBar'),drag=false;
+  function bp(e){var r=bar.getBoundingClientRect();if(!r.width)return;var f=(e.clientX-r.left-8)/(r.width-16);setLog(-12+15*clamp(f,0,1));}
+  bar.addEventListener('pointerdown',function(e){drag=true;try{bar.setPointerCapture(e.pointerId);}catch(_){}bp(e);});
+  bar.addEventListener('pointermove',function(e){if(drag)bp(e);});
+  bar.addEventListener('pointerup',function(){drag=false;});bar.addEventListener('pointercancel',function(){drag=false;});
+  bar.addEventListener('keydown',function(e){var d=e.shiftKey?.5:.05;if(e.key==='ArrowLeft'||e.key==='ArrowDown'){setLog(S.em.logL-d);e.preventDefault();}else if(e.key==='ArrowRight'||e.key==='ArrowUp'){setLog(S.em.logL+d);e.preventDefault();}});
+  var irc=$('#irCv');irc.addEventListener('pointermove',irPointer);irc.addEventListener('pointerdown',irPointer);
+  irc.addEventListener('pointerleave',function(){S.ir.cursor=null;renderIR();});
+  $('#irLab').onclick=function(){S.ir.labels=!S.ir.labels;renderIR();};
+  $('#lamR').oninput=function(){S.uv.lam=+this.value;drawUV();};
+  $('#c1R').oninput=function(){S.uv.c1=UVS[S.uv.key].max*(+this.value)/1000;drawUV();};
+  $('#c2R').oninput=function(){S.uv.c2=UVS[S.uv.key].max*(+this.value)/1000;drawUV();};
+  $('#goMax').onclick=function(){var m=lmaxOf(S.uv.key);if(UVS[S.uv.key].bands.length){S.uv.lam=m;renderUV(false);}};
+  var uc=$('#uvCv'),ud=false;
+  uc.addEventListener('pointerdown',function(e){ud=true;try{uc.setPointerCapture(e.pointerId);}catch(_){}uvLamFromPointer(e);});
+  uc.addEventListener('pointermove',function(e){if(ud)uvLamFromPointer(e);});
+  uc.addEventListener('pointerup',function(){ud=false;});uc.addEventListener('pointercancel',function(){ud=false;});
+}
+
+/* ====================================================================
+   GUIDED LAB
+   ==================================================================== */
+var G={inv:0,idx:0,steps:null,res:[]};
+function setEM(mol,mode,regId){S.em.mol=mol;S.em.mode=mode||0;S.em.logL=REGCENTER[regId];}
+function mcq(q,o,a,why){return {q:q,o:o,a:a,why:why};}
+function groupOptions(correct,pool){
+  var d=shuffle(pool.filter(function(g){return g!==correct;})).slice(0,3);
+  var o=shuffle(uniq([correct].concat(d)));return {o:o,a:o.indexOf(correct)};
+}
+function buildInv(i){
+  var st=[];
+  if(i===0){
+    st.push({view:'em',t:'Choose <b>H\u2082O</b>, then press <b>Microwave</b>. Watch the molecule and the energy-level diagram.',setup:function(){setEM('H2O',0,'micro');},
+      q:mcq('What does a microwave photon change in a water molecule?',['Its rotation','Its bond vibrations','Its electron energy levels','Its nucleus'],0,'Microwave radiation is associated with transitions in molecular rotational levels (3.11.A.1.i).')});
+    st.push({view:'em',t:'Now press <b>Infrared</b>. Use the IR motion buttons to step through the three motions of H\u2082O.',setup:function(){setEM('H2O',0,'ir');},
+      q:mcq('Which description matches what infrared radiation does?',['Bonds stretch and bend: a change in vibrational level','The molecule spins faster: a change in rotational level','An electron moves to a higher level: a change in electronic level','Atoms leave the molecule'],0,'Infrared radiation is associated with transitions in molecular vibrational levels (3.11.A.1.ii).')});
+    st.push({view:'em',t:'Press <b>Visible</b>, then <b>Ultraviolet</b>. Watch what moves in the energy-level diagram.',setup:function(){setEM('H2O',0,'vis');},
+      q:mcq('What happens when an ultraviolet or visible photon is absorbed?',['An electron moves to a higher electronic energy level','The whole molecule starts to rotate','A bond vibrates with larger amplitude','The nucleus splits'],0,'Ultraviolet/visible radiation is associated with transitions in electronic energy levels (3.11.A.1.iii).')});
+    st.push({view:'em',t:'Slide the marker across microwave, infrared, and visible. Compare the energy value in the diagram each time.',setup:function(){setEM('H2O',0,'ir');},
+      q:mcq('Which list puts the three kinds of transition in order of increasing energy gap?',['Rotational, vibrational, electronic','Electronic, vibrational, rotational','Vibrational, rotational, electronic','Rotational, electronic, vibrational'],0,'Rotational gaps are smallest (microwave photons), vibrational gaps are larger (infrared), and electronic gaps are largest (ultraviolet/visible).')});
+    st.push({view:'em',t:'<span class="ext">Extension.</span> Choose <b>CO\u2082</b> and press <b>Microwave</b>. Does anything change?',setup:function(){setEM('CO2',0,'micro');},
+      q:mcq('Why does CO\u2082 not respond to microwaves?',['It is nonpolar, so there is no dipole for the field to turn','Microwave photons carry too much energy for CO\u2082','CO\u2082 has no bonds to rotate','CO\u2082 is a gas'],0,'Rotation by microwaves works through the interaction of the photon with the molecule\u2019s dipole. CO\u2082 is linear and nonpolar.')});
+  }
+  if(i===1){
+    st.push({view:'ir',t:'Both ethanol and dimethyl ether have the formula C\u2082H\u2086O. Look at ethanol, then switch to dimethyl ether.',setup:function(){S.ir.key='ethanol';S.ir.hidden=false;S.ir.names=null;S.ir.labels=true;},
+      q:mcq('Which feature is in the ethanol spectrum but not in the dimethyl ether spectrum?',['A broad, strong band near 3350 cm\u207b\u00b9','A sharp, strong band near 1715 cm\u207b\u00b9','A strong band near 1100 cm\u207b\u00b9','Any C\u2013H band near 2900 cm\u207b\u00b9'],0,'Ethanol has an O\u2013H bond, which gives the broad band. Dimethyl ether has only C\u2013H and C\u2013O bonds.')});
+    st.push({view:'ir',t:'Compare 2-propanol with acetone.',setup:function(){S.ir.key='acetone';S.ir.hidden=false;S.ir.names=null;S.ir.labels=true;},
+      q:mcq('Which band is the sign of a carbonyl group (C=O)?',['A strong, sharp band near 1715 cm\u207b\u00b9','A broad band near 3350 cm\u207b\u00b9','A medium band near 2250 cm\u207b\u00b9','A weak band near 2900 cm\u207b\u00b9'],0,'The table gives C=O at 1650 to 1780 cm\u207b\u00b9, strong. Acetone has it; 2-propanol does not.')});
+    st.push({view:'ir',t:'Look at the bond vibration panel under the spectrum. Compare O\u2013H with C\u2013O.',setup:function(){S.ir.key='ethanol';S.ir.hidden=false;S.ir.names=null;S.ir.labels=true;},
+      q:mcq('Why does the O\u2013H stretch absorb at a much higher wavenumber than the C\u2013O stretch?',['Hydrogen is much lighter, so the bond vibrates faster','The O\u2013H bond is longer','C\u2013O is an ionic bond','Oxygen has more electrons in O\u2013H'],0,'Lighter atoms (and stronger bonds) vibrate at higher frequency, so they absorb higher-energy IR photons.')});
+    var pool=uniq(IRKEYS.map(function(k){return IRC[k].g;}));
+    var pick=shuffle(['dme','acetone','acetic','acetonitrile','methylamine','propene','methanol']).slice(0,3);
+    var tags=['A','B','C'];var names=pick.map(function(k,j){return {key:k,tag:tags[j]};});
+    pick.forEach(function(k,j){
+      var go=groupOptions(IRC[k].g,pool);
+      st.push({view:'ir',t:'<b>Unknown '+tags[j]+'</b>: labels are off. Use the table and the shape of the spectrum.',setup:function(){S.ir.hidden=true;S.ir.names=names;S.ir.key=k;S.ir.cursor=null;},
+        q:mcq('Which functional group does Unknown '+tags[j]+' contain?',go.o,go.a,'Unknown '+tags[j]+' is '+IRC[k].n.toLowerCase()+', '+IRC[k].f+'.')});
+    });
+    var iso=Math.random()<.5?'ethanol':'dme';
+    var isoO=['Ethanol, CH\u2083CH\u2082OH (alcohol)','Dimethyl ether, CH\u2083OCH\u2083 (ether)','A ketone with a C=O bond','A carboxylic acid'];
+    st.push({view:'ir',t:'<b>Unknown D</b> has the formula C\u2082H\u2086O. Decide which compound it is.',setup:function(){S.ir.hidden=true;S.ir.names=[{key:iso,tag:'D'}];S.ir.key=iso;S.ir.cursor=null;},
+      q:mcq('Which compound is Unknown D?',isoO,iso==='ethanol'?0:1,(iso==='ethanol'?'The broad O\u2013H band near 3350 cm\u207b\u00b9 shows an alcohol.':'There is no O\u2013H band and no C=O band, only C\u2013H and a strong C\u2013O band, so it is an ether.')+' A ketone needs at least three carbons (acetone is C\u2083H\u2086O), so C\u2082H\u2086O can only be an alcohol or an ether.')});
+  }
+  if(i===2){
+    st.push({view:'uv',t:'Select <b>KMnO\u2084</b> and press <b>Go to peak absorbance</b>.',setup:function(){S.uv.unknown=false;setUVkey('KMnO4');},
+      q:mcq('Which color of light does permanganate absorb most strongly?',['Green','Red','Blue','Violet'],0,'The peak is near 530 nm, which is green. The solution looks purple because the remaining colors (red and blue/violet) pass through.')});
+    st.push({view:'uv',t:'Sample 1 is set to twice the concentration of Sample 2. Compare their absorbances at the same wavelength.',setup:function(){S.uv.unknown=false;setUVkey('KMnO4');S.uv.c1=UVS.KMnO4.max*.6;S.uv.c2=UVS.KMnO4.max*.3;},
+      q:mcq('How does A\u2081 compare with A\u2082?',['A\u2081 is twice A\u2082','A\u2081 is half of A\u2082','A\u2081 equals A\u2082','A\u2081 is four times A\u2082'],0,'At a fixed wavelength, absorbance is proportional to concentration, so double the concentration gives double the absorbance.')});
+    st.push({view:'uv',t:'Choose <b>NO\u2082(g)</b> and set the wavelength to 400 nm. Then choose <b>N\u2082O\u2084(g)</b> and look at the same wavelength.',setup:function(){S.uv.unknown=false;setUVkey('NO2');S.uv.lam=400;},
+      q:mcq('What does the 400 nm measurement show?',['NO\u2082 absorbs visible light and N\u2082O\u2084 does not','N\u2082O\u2084 absorbs more than NO\u2082','Both absorb equally','Neither one absorbs anywhere'],0,'NO\u2082 is reddish brown, so it absorbs visible photons. N\u2082O\u2084 is colorless: it has no visible absorption.')});
+    st.push({view:'uv',t:'With N\u2082O\u2084 selected, drag the wavelength marker toward the ultraviolet.',setup:function(){S.uv.unknown=false;setUVkey('N2O4');S.uv.lam=300;},
+      q:mcq('N\u2082O\u2084 is colorless. Where can you still detect it?',['In the ultraviolet, where its electronic gap matches the photon energy','Nowhere: colorless samples never absorb','In the microwave region, as a color change','Only at 700 nm'],0,'Colorless means no visible absorption. It can still absorb higher-energy ultraviolet photons that match a larger electronic gap.')});
+    var hid=Math.round((.25+Math.random()*.6)*1000)/1000;
+    st.push({view:'uv',match:true,hid:hid,t:'Sample 1 is an <b>unknown</b> concentration of CuSO\u2084. Move the Sample 2 slider until the two absorbances match, then press <b>Check my match</b>.',
+      setup:function(){S.uv.unknown=true;setUVkey('CuSO4');S.uv.c1=UVS.CuSO4.max*hid;S.uv.c2=UVS.CuSO4.max*.1;}});
+  }
+  return st;
+}
+var INVS=['Radiation and motion','Reading IR spectra','UV-Vis and concentration'];
+function startInv(i){G.inv=i;G.idx=0;G.steps=buildInv(i);G.res=G.steps.map(function(){return {done:false,first:null,sel:null,tries:0,msg:''};});renderTask();applyStep();}
+function applyStep(){
+  var s=G.steps[G.idx];S.ir.hidden=false;if(G.inv!==1){S.ir.hidden=false;S.ir.names=null;}
+  if(G.inv!==2)S.uv.unknown=false;
+  s.setup&&s.setup();
+  $$('#v-em,#v-ir,#v-uv').forEach(function(e){e.hidden=true;});
+  S.view=s.view;$('#v-'+s.view).hidden=false;
+  if(s.view==='uv'){renderUV(true);}else renderView();
+}
+function renderTask(){
+  var tabs=$('#invTabs');tabs.innerHTML='';
+  INVS.forEach(function(n,i){var b=document.createElement('button');b.className='tab'+(G.inv===i?' on':'');b.textContent=(i+1)+'. '+n;b.onclick=function(){startInv(i);};tabs.appendChild(b);});
+  var body=$('#taskBody');body.innerHTML='';
+  var s=G.steps[G.idx],r=G.res[G.idx];
+  var p=document.createElement('p');p.className='pill';p.style.margin='10px 0 4px';p.textContent='Step '+(G.idx+1)+' of '+G.steps.length;body.appendChild(p);
+  var t=document.createElement('div');t.innerHTML=s.t;body.appendChild(t);
+  var q=document.createElement('div');q.className='q';
+  if(s.q){
+    var qt=document.createElement('div');qt.className='qt';qt.textContent=s.q.q;q.appendChild(qt);
+    s.q.o.forEach(function(o,i){var b=document.createElement('button');b.className='btn opt';b.textContent=o;
+      if(r.done&&i===s.q.a)b.classList.add('right');
+      if(r.sel&&r.sel.indexOf(i)>=0&&i!==s.q.a)b.classList.add('wrong');
+      b.disabled=r.done;
+      b.onclick=function(){pick(i);};q.appendChild(b);});
+    if(r.done){var fb=document.createElement('div');fb.className='fb';fb.innerHTML='<b>Correct.</b> '+s.q.why;q.appendChild(fb);}
+    else if(r.sel&&r.sel.length){var fb2=document.createElement('div');fb2.className='fb bad';fb2.textContent='Not quite. Look at the tool again and try another answer.';q.appendChild(fb2);}
+  }else if(s.match){
+    var bt=document.createElement('button');bt.className='btn pri';bt.textContent='Check my match';bt.disabled=r.done;bt.onclick=checkMatch;q.appendChild(bt);
+    if(r.msg){var fb3=document.createElement('div');fb3.className='fb'+(r.done?'':' bad');fb3.innerHTML=r.msg;q.appendChild(fb3);}
+  }
+  body.appendChild(q);
+  var nav=document.createElement('div');nav.className='nav';
+  var back=document.createElement('button');back.className='btn';back.textContent='Back';back.disabled=G.idx===0;back.onclick=function(){G.idx--;renderTask();applyStep();};nav.appendChild(back);
+  var last=G.idx===G.steps.length-1;
+  var nx=document.createElement('button');nx.className='btn pri';nx.textContent=last?'Finish':'Next';nx.disabled=!r.done;
+  nx.onclick=function(){if(last){showSummary();}else{G.idx++;renderTask();applyStep();}};nav.appendChild(nx);
+  var rs=document.createElement('button');rs.className='btn';rs.textContent='Restart';rs.onclick=function(){startInv(G.inv);};nav.appendChild(rs);
+  body.appendChild(nav);
+}
+function pick(i){
+  var s=G.steps[G.idx],r=G.res[G.idx];if(r.done)return;
+  r.sel=r.sel||[];if(r.sel.indexOf(i)<0)r.sel.push(i);r.tries++;
+  if(i===s.q.a){r.done=true;r.first=r.tries===1;}
+  renderTask();
+}
+function checkMatch(){
+  var s=G.steps[G.idx],r=G.res[G.idx];if(r.done)return;
+  var k='CuSO4',l=S.uv.lam;var A1=ab(k,l,S.uv.c1),A2=ab(k,l,S.uv.c2);r.tries++;
+  if(Math.abs(A1-A2)<=.03&&A1>.05){r.done=true;r.first=r.tries===1;S.uv.unknown=false;renderUV(false);
+    r.msg='Matched: A\u2081 = '+A1.toFixed(2)+' and A\u2082 = '+A2.toFixed(2)+'. Equal absorbance at the same wavelength means equal concentration, so the unknown was about <b>'+fmtC(S.uv.c1)+'</b>.';}
+  else r.msg='Not yet: A\u2081 = '+A1.toFixed(2)+' and A\u2082 = '+A2.toFixed(2)+'. Adjust Sample 2 and check again. (Make sure the wavelength is on the copper(II) band, near 800 nm.)';
+  renderTask();
+}
+function showSummary(){
+  var n=G.res.filter(function(r){return r.first;}).length;
+  var body=$('#taskBody');body.innerHTML='';
+  var d=document.createElement('div');d.className='fb';d.innerHTML='<b>Investigation complete.</b> You answered '+n+' of '+G.steps.length+' correctly on the first try.';body.appendChild(d);
+  var nav=document.createElement('div');nav.className='nav';
+  var rs=document.createElement('button');rs.className='btn pri';rs.textContent='Run it again';rs.onclick=function(){startInv(G.inv);};nav.appendChild(rs);
+  var nxt=document.createElement('button');nxt.className='btn';nxt.textContent='Next investigation';nxt.disabled=G.inv>=INVS.length-1;nxt.onclick=function(){startInv(G.inv+1);};nav.appendChild(nxt);
+  body.appendChild(nav);
+}
+
+/* ====================================================================
+   QUIZ
+   ==================================================================== */
+function Q(q,right,wrong,why,extra){var o=uniq([right].concat(wrong));var r={q:q,right:right,wrong:wrong,why:why};if(extra)for(var k in extra)r[k]=extra[k];return r;}
+var BANK={
+1:[
+ Q('Which region of the electromagnetic spectrum is associated with transitions between molecular rotational levels?','Microwave',['Infrared','Ultraviolet/visible','X-ray'],'Rotational gaps are the smallest, and microwave photons have matching energy.'),
+ Q('Infrared radiation is associated with which kind of change in a molecule?','A change in vibrational level (bonds stretching and bending)',['A change in rotational level','A change in electronic level','A change in the number of protons'],'Infrared photons match the spacing between vibrational levels.'),
+ Q('Ultraviolet and visible radiation are associated with which kind of transition?','Electrons moving between electronic energy levels',['Molecules rotating faster','Bonds stretching and bending','Atoms changing position in a lattice'],'UV/visible photons carry enough energy to move electrons to higher levels.'),
+ Q('Which photon has the greatest energy?','Ultraviolet',['Infrared','Visible','Radio'],'Energy increases as wavelength decreases. Of these, ultraviolet has the shortest wavelength.'),
+ Q('As the wavelength of electromagnetic radiation gets shorter, what happens to its frequency and photon energy?','Both increase',['Both decrease','Frequency increases, energy decreases','Frequency decreases, energy increases'],'c = \u03bb\u03bd, so shorter \u03bb means larger \u03bd, and E = h\u03bd rises with \u03bd.'),
+ Q('Which instrument measures how much light a colored solution absorbs?','A spectrophotometer',['A mass spectrometer','A calorimeter','A barometer'],'A spectrophotometer compares the light entering and leaving a sample.')
+],
+2:[
+ Q('An electron in a sodium atom moves from 3s to 3p after absorbing a photon. Which type of spectroscopy is involved?','Ultraviolet/visible: an electronic transition',['Infrared: a vibrational transition','Microwave: a rotational transition','Radio: a nuclear transition'],'Changing an electron\u2019s energy level is an electronic transition. A single atom has no bonds to vibrate and nothing to rotate.'),
+ Q('The C=O bond in acetone stretches with larger amplitude after absorbing a photon. Which region is the photon from?','Infrared',['Microwave','Ultraviolet','X-ray'],'Bond stretching is molecular vibration, which is associated with infrared radiation.'),
+ Q('A gas of polar molecules begins to rotate faster after absorbing radiation. Which region is most likely?','Microwave',['Infrared','Visible','Gamma'],'Rotational transitions are associated with microwave radiation.'),
+ Q('The spectrum shown has a strong, sharp band near 1715 cm\u207b\u00b9 and no broad band near 3300 cm\u207b\u00b9. Which compound produced it?','Acetone',['2-Propanol','Ethanol','Acetic acid'],'1715 cm\u207b\u00b9 is C=O. The lack of a broad O\u2013H band rules out the alcohol and the carboxylic acid.',{ir:'acetone'}),
+ Q('A photon has an energy of 4.0\u00d710\u207b\u00b9\u2079 J (h = 6.626\u00d710\u207b\u00b3\u2074 J\u00b7s, c = 3.00\u00d710\u2078 m/s). Which region is it from?','Visible',['Microwave','Infrared','X-ray'],'\u03bb = hc/E = (6.626\u00d710\u207b\u00b3\u2074)(3.00\u00d710\u2078)/(4.0\u00d710\u207b\u00b9\u2079) \u2248 5.0\u00d710\u207b\u2077 m = 500 nm, which is visible light.'),
+ Q('Two samples of the same colored solution are measured in the same cell at the same wavelength. Solution X has A = 0.30 and solution Y has A = 0.90. How does the concentration of Y compare with X?','Y is three times as concentrated',['Y is one-third as concentrated','Y is nine times as concentrated','They have the same concentration'],'Absorbance is proportional to concentration, and 0.90 is three times 0.30.')
+],
+3:[
+ Q('The spectrum shown is from one of two isomers of C\u2082H\u2086O: ethanol or dimethyl ether. Which is it, and why?','Ethanol, because of the broad band near 3350 cm\u207b\u00b9 (O\u2013H)',['Ethanol, because of the strong band near 1715 cm\u207b\u00b9 (C=O)','Dimethyl ether, because of the broad band near 3350 cm\u207b\u00b9 (O\u2013H)','Dimethyl ether, because there is no C\u2013H band'],'Only ethanol has an O\u2013H bond. Dimethyl ether shows C\u2013H and C\u2013O bands but nothing broad near 3350 cm\u207b\u00b9.',{ir:'ethanol'}),
+ Q('The O\u2013H stretch absorbs near 3350 cm\u207b\u00b9, while the C\u2013O stretch absorbs near 1100 cm\u207b\u00b9. Which explanation is best?','Hydrogen is much lighter, so the O\u2013H bond vibrates at a higher frequency',['The O\u2013H bond is longer than the C\u2013O bond','The C\u2013O bond is ionic and does not absorb infrared','Hydrogen has more electrons than carbon'],'Lighter atoms and stronger bonds vibrate faster, so they absorb higher-energy photons.'),
+ Q('Why can infrared photons excite molecular vibrations but usually cannot promote electrons to higher levels?','IR photons have less energy than the electronic gap but match the smaller vibrational spacing',['IR photons have more energy than the electronic gap, so they pass through','Electrons only absorb polarized light','Vibrational levels are farther apart than electronic levels'],'Electronic gaps are much larger than vibrational gaps. Photons need energy matching the gap, so IR fits vibrations and UV/visible fits electronic transitions.'),
+ Q('The absorbance spectrum shown is for an aqueous solution. Which color of visible light does it absorb most strongly?','Green (about 525 nm)',['Violet (about 410 nm)','Blue (about 470 nm)','Red (about 680 nm)'],'The tallest visible peak is near 525 nm, which is green. The solution looks purple because green is removed from white light.',{uv:'KMnO4'}),
+ Q('N\u2082O\u2084 is colorless, yet it can be detected with a spectrophotometer. Which statement explains this best?','It absorbs ultraviolet photons, whose energy matches a larger electronic gap',['It absorbs microwave photons that make it rotate','It absorbs visible light but the color is too faint to see','Colorless substances absorb all wavelengths equally'],'Colorless means no visible absorption. UV photons carry more energy and can match electronic gaps that visible photons cannot.'),
+ Q('A student says microwave ovens heat water by breaking O\u2013H bonds. Which evaluation is best?','Incorrect: microwave photons are too low in energy to break bonds; they increase the rotation of polar water molecules, which spreads as thermal energy',['Correct: microwave photons carry enough energy to break O\u2013H bonds','Incorrect: microwaves excite electrons in water to higher levels','Incorrect: water does not interact with microwaves at all'],'Microwave photons correspond to rotational transitions, far below the energy needed to break a bond. The rotating polar molecules transfer energy to their surroundings as heat.')
+]};
+var QZ={tier:0,qs:[],i:0,score:0,answered:false};
+function showTiers(){
+  var b=$('#quizBox');
+  b.innerHTML='<h2>Quiz</h2><p class="note" style="margin-top:0">Six questions per tier. Pick a tier to start.</p><div class="tiers" id="tiers"></div>';
+  [['1','Tier 1: Foundations','Regions, transitions, and the spectrum.'],['2','Tier 2: Application','Identify transitions, read a spectrum, use E = hc/\u03bb.'],['3','Tier 3: AP-style reasoning','Explain, compare, and evaluate claims.']].forEach(function(t){
+    var c=document.createElement('button');c.className='tier';c.innerHTML='<b>'+t[1]+'</b><span>'+t[2]+'</span>';c.onclick=function(){startQuiz(+t[0]);};$('#tiers').appendChild(c);});
+}
+function startQuiz(t){
+  QZ.tier=t;QZ.i=0;QZ.score=0;
+  QZ.qs=shuffle(BANK[t]).map(function(q){var o=shuffle(uniq([q.right].concat(q.wrong)));var c={q:q.q,o:o,a:o.indexOf(q.right),why:q.why,ir:q.ir,uv:q.uv};return c;});
+  showQ();
+}
+function showQ(){
+  var q=QZ.qs[QZ.i];QZ.answered=false;
+  var b=$('#quizBox');b.innerHTML='';
+  var p=document.createElement('p');p.className='pill';p.style.margin='0 0 6px';p.textContent='Tier '+QZ.tier+', question '+(QZ.i+1)+' of '+QZ.qs.length;b.appendChild(p);
+  var qt=document.createElement('div');qt.className='qt';qt.style.fontWeight='600';qt.textContent=q.q;b.appendChild(qt);
+  if(q.ir||q.uv){var cw=document.createElement('div');cw.className='cw';cw.style.margin='10px 0';var cv=document.createElement('canvas');cw.appendChild(cv);b.appendChild(cw);
+    if(q.ir)drawIR(cv,IRC[q.ir],{labels:false,h:240});
+    else drawQuizUV(cv,q.uv);}
+  var box=document.createElement('div');box.className='q';
+  q.o.forEach(function(o,i){var bt=document.createElement('button');bt.className='btn opt';bt.textContent=o;bt.onclick=function(){answerQ(i,box,q);};box.appendChild(bt);});
+  b.appendChild(box);
+}
+function drawQuizUV(cv,key){
+  var f=fit(cv,230);var x=f.x,w=f.w,h=f.h;x.clearRect(0,0,w,h);
+  var L=42,R=10,T=12,B=40,PW=w-L-R,PH=h-T-B;var X=function(l){return L+(l-200)/600*PW;},Y=function(a){return T+(1-Math.min(a,2)/2)*PH;};
+  var c=UVS[key].max*.6;x.font='11px ui-monospace,monospace';
+  for(var a=0;a<=2;a+=.5){x.strokeStyle='rgba(142,160,189,.14)';x.beginPath();x.moveTo(L,Y(a));x.lineTo(L+PW,Y(a));x.stroke();x.fillStyle=COL.mut;x.textAlign='right';x.fillText(a.toFixed(1),L-5,Y(a)+4);}
+  for(var l=200;l<=800;l+=100){x.fillStyle=COL.mut;x.textAlign='center';x.fillText(String(l),X(l),T+PH+13);}
+  var g=x.createLinearGradient(X(400),0,X(700),0);for(var i=0;i<=6;i++)g.addColorStop(i/6,wl2css(400+i*50));x.fillStyle=g;x.fillRect(X(400),T+PH+18,X(700)-X(400),6);
+  x.fillStyle=COL.mut;x.font='12px system-ui,sans-serif';x.textAlign='center';x.fillText('Wavelength (nm)',L+PW/2,h-4);
+  x.save();x.translate(11,T+PH/2);x.rotate(-Math.PI/2);x.fillText('Absorbance',0,0);x.restore();
+  x.strokeStyle=COL.teal;x.lineWidth=2;x.beginPath();for(var j=0;j<=PW;j++){var yy=Y(ab(key,200+j/PW*600,c));if(j===0)x.moveTo(L+j,yy);else x.lineTo(L+j,yy);}x.stroke();
+}
+function answerQ(i,box,q){
+  if(QZ.answered)return;QZ.answered=true;
+  var bs=box.querySelectorAll('.opt');
+  Array.prototype.forEach.call(bs,function(b,j){b.disabled=true;if(j===q.a)b.classList.add('right');else if(j===i)b.classList.add('wrong');});
+  var ok=i===q.a;if(ok)QZ.score++;
+  var fb=document.createElement('div');fb.className='fb'+(ok?'':' bad');fb.innerHTML='<b>'+(ok?'Correct.':'Not quite.')+'</b> '+q.why;box.appendChild(fb);
+  var nav=document.createElement('div');nav.className='nav';var last=QZ.i===QZ.qs.length-1;
+  var nx=document.createElement('button');nx.className='btn pri';nx.textContent=last?'See results':'Next question';nx.onclick=function(){if(last)showResult();else{QZ.i++;showQ();}};nav.appendChild(nx);box.appendChild(nav);
+}
+function showResult(){
+  var n=QZ.qs.length,s=QZ.score;var band=s>=5?['Mastery','mastery','You can explain this topic accurately and apply it to new cases.']:s===4?['Proficient','proficient','You have most of it. Review the questions you missed.']:['Review','review','Go back to Explore or the Guided Lab, then try this tier again.'];
+  var b=$('#quizBox');b.innerHTML='<h2>Tier '+QZ.tier+' result</h2><div class="band '+band[1]+'">'+band[0]+'</div><p>'+s+' of '+n+' correct. '+band[2]+'</p>';
+  var nav=document.createElement('div');nav.className='nav';
+  var a=document.createElement('button');a.className='btn pri';a.textContent='Try this tier again';a.onclick=function(){startQuiz(QZ.tier);};nav.appendChild(a);
+  var c=document.createElement('button');c.className='btn';c.textContent='Choose a tier';c.onclick=showTiers;nav.appendChild(c);b.appendChild(nav);
+}
+
+/* ====================================================================
+   BOOT
+   ==================================================================== */
+function frame(ts){
+  var t=ts/1000;
+  if(!document.hidden&&S.mode!=='quiz'){
+    if(S.view==='em'){drawMolCanvas(t);drawLevels(t);}
+    else if(S.view==='ir'){drawBondLab(t);}
+  }
+  if(window.requestAnimationFrame)window.requestAnimationFrame(frame);
+}
+var rt=null;
+window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(S.mode==='quiz')return;renderView();},120);});
+buildStatic();
+setUVkey('KMnO4');
+renderEM();
+if(window.requestAnimationFrame)window.requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
